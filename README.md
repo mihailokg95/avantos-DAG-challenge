@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project implements a dynamic prefill system for forms based on a DAG (Directed Acyclic Graph).
+This project implements a dynamic prefill system for forms based on a Directed graph (assumed acyclic, but traversal is guarded against cycles using a visited set).
 
 Users can map fields of a selected form to data coming from:
 
@@ -129,7 +129,15 @@ No other code changes are required.
 
 ## DAG Traversal
 
-We use BFS traversal to resolve transitive dependencies.
+We use **DFS (Depth-First Search)** to resolve transitive dependencies between forms.
+
+The traversal is implemented recursively and uses a `visited` set to prevent duplicate processing and guard against potential graph inconsistencies.
+
+This approach ensures:
+
+* All upstream dependencies (direct and transitive) are resolved
+* No infinite loops in case of malformed data
+* Linear time complexity relative to nodes and edges (O(V + E))
 
 Example:
 
@@ -139,12 +147,25 @@ Form D depends on:
 * Transitive: Form A
 
 ---
+## Prefill Resolution Flow
+
+1. User selects a form
+2. System resolves upstream dependencies via DFS traversal
+3. Providers generate structured prefill options:
+   - Form fields (from upstream forms)
+   - Global data sources
+4. Options are merged and displayed in a tree-based selector
+5. User selects mappings which are submitted as prefill configuration
+
+
+---
+
 
 ## Features
 
 * Form list from API
 * Prefill editor UI
-* Tree-based modal
+* Tree-based modal for selecting prefill sources (grouped by provider and structured hierarchically)
 * Search
 * Keyboard support (ESC / ENTER)
 * Submit mapping

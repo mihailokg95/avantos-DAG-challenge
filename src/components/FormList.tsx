@@ -13,11 +13,9 @@ export function FormList({ forms, selectedFormId, onSelect }: Props) {
         <div
           key={form.id}
           onClick={() => onSelect(form.id)}
-          style={{
-            padding: 8,
-            cursor: "pointer",
-            background: selectedFormId === form.id ? "#eee" : "",
-          }}
+          className={`p-2 cursor-pointer ${
+            selectedFormId === form.id ? "bg-gray-200" : ""
+          }`}
         >
           {form.name}
         </div>

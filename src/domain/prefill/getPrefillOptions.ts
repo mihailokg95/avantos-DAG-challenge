@@ -1,9 +1,7 @@
 import type { Form, FormsMap } from "../../types/types";
 import type { PrefillGroup } from "./providers/types";
-import { formFieldProvider } from "./providers/formFieldProvider";
-import { globalProvider } from "./providers/globalProvider";
+import { providers } from "./providers";
 
-const providers = [formFieldProvider, globalProvider];
 export function getPrefillOptions(params: {
   currentForm: Form;
   allForms: FormsMap;

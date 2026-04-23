@@ -16,14 +16,14 @@ export default function App() {
     : null;
 
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div className="flex h-full">
       <FormList
         forms={data}
         selectedFormId={selectedFormId}
         onSelect={setSelectedFormId}
       />
 
-      <div style={{ padding: 20, flex: 1 }}>
+      <div className="flex p-5">
         {selectedForm ? (
           <PrefillEditor
             form={selectedForm}

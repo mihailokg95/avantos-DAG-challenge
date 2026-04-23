@@ -12,7 +12,7 @@ export const formFieldProvider: PrefillSourceProvider = {
         groupLabel: "Form Fields",
         nodes: upstream.map((form) => ({
           label: form.name,
-          children: form.fields.map((field) => ({
+          children: (form.fields ?? []).map((field) => ({
             label: field.name,
             option: {
               type: "form-fields",

@@ -41,11 +41,6 @@ export function PrefillEditor({ form, forms }: Props) {
               </div>
             ) : (
               <div
-                style={{
-                  border: "1px dashed blue",
-                  padding: 6,
-                  cursor: "pointer",
-                }}
                 onClick={() => setModalField(field.id)}
                 className="border border-dashed border-blue-400 px-3 py-2 rounded-md text-sm text-gray-500 cursor-pointer hover:bg-blue-50"
               >
